@@ -1,33 +1,40 @@
 import axios from "axios";
+import { logger } from "../utils/logger.mjs";
 
 export class theCockTailDbService {
   static async getRandomCocktail() {
     try {
+      logger.info("start fetching random cocktail");
+
       const { data } = await axios.get(
         `${process.env.BE_THECOCKTAILDB_API_BASE}/random.php`
       );
+
+      logger.info("finished fetching random cocktail");
 
       const cocktails = data.drinks;
 
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {
-      console.log("Failed to fetch random cocktail");
-      console.log(e);
+      logger.error("failed to fetch random cocktail", e);
     }
   }
 
   static async searchCocktail(keywords) {
     try {
+      logger.info("start searching cocktails");
+
       const { data } = await axios.get(
         `${process.env.BE_THECOCKTAILDB_API_BASE}/search.php?s=${keywords}`
       );
+
+      logger.info("finished searching cocktails");
 
       const cocktails = data.drinks;
 
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {
-      console.log("Failed to search cocktails");
-      console.log(e);
+      logger.error("failed to search cocktails", e);
     }
   }
 
