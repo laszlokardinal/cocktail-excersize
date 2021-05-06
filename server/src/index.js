@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 const express = require("express");
+const path = require("path");
 const app = express();
 
 dotenv.config();
@@ -19,6 +20,22 @@ if (missingEnvironmentVariables.length) {
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
+});
+
+// serve contents of public folder on /cocktail
+app.use(
+  "/cocktail",
+  express.static(path.normalize(__dirname + "/../../public"), {
+    dotfiles: "deny",
+    extensions: ["js", "html", "css", "js.map"],
+    fallthrough: true,
+    index: false,
+  })
+);
+
+// history api fallback
+app.use("/cocktail", (req, res) => {
+  res.sendFile(path.normalize(__dirname + "/../../public/index.html"));
 });
 
 app.listen(process.env.PORT, () => {
