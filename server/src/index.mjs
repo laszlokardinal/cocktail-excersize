@@ -2,6 +2,8 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { cocktailApi } from "./api/cocktail.api.mjs";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
@@ -19,9 +21,7 @@ if (missingEnvironmentVariables.length) {
   process.exit(1);
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/api/cocktail", cocktailApi());
 
 // serve contents of public folder on /cocktail
 app.use(
@@ -40,5 +40,5 @@ app.use("/cocktail", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
+  console.log(`Listening at http://localhost:${process.env.PORT}`);
 });
