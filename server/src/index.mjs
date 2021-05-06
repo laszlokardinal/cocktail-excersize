@@ -1,9 +1,10 @@
-const dotenv = require("dotenv");
-const express = require("express");
-const path = require("path");
-const app = express();
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const app = express();
 
 const missingEnvironmentVariables = [
   "PORT",

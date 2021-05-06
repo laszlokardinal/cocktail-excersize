@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
+    "start": "node -r dotenv/config ./src/index.mjs",
+    "dev": "nodemon -r dotenv/config ./src/index.mjs",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css}\"",
     "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,json,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'"
