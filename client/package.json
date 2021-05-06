@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development rollup -c -w",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css}\"",
-    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,json,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'"
+    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'"
   },
   "keywords": [],
   "author": "",

@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node -r dotenv/config ./src/index.mjs",
     "dev": "nodemon -r dotenv/config ./src/index.mjs",
-    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
-    "format:check": "prettier --list-different \"src/**/*.{js,jsx,css}\"",
-    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,jsx,json,css}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'"
+    "format": "prettier --write \"src/**/*.{js,mjs}\"",
+    "format:check": "prettier --list-different \"src/**/*.{js,mjs}\"",
+    "format:watch": "onchange --await-write-finish 0 \"src/**/*.{js,mjs}\" -- sh -c 'clear; npx prettier --write {{changed}} && echo FORMAT OK'"
   },
   "keywords": [],
   "author": "",
