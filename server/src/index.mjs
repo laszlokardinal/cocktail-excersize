@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import expressWinston from "express-winston";
+import { logger } from "./utils/logger.mjs";
 
 import { cocktailApi } from "./api/cocktail.api.mjs";
 
@@ -20,6 +22,8 @@ if (missingEnvironmentVariables.length) {
 
   process.exit(1);
 }
+
+app.use(expressWinston.logger(logger));
 
 app.use("/api/cocktail", cocktailApi());
 
