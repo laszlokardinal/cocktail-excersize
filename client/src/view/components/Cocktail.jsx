@@ -34,5 +34,16 @@ export const Cocktail = ({ cocktail, errorMessage }) => {
 };
 
 Cocktail.propTypes = {
+  cocktail: PropTypes.exact({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    instructions: PropTypes.string.isRequired,
+    ingredients: PropTypes.arrayOf(
+      PropTypes.exact({
+        name: PropTypes.string.isRequired,
+        measure: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }),
   errorMessage: PropTypes.string,
 };
