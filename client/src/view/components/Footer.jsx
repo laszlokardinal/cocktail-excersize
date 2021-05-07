@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 
 import style from "./Footer.css";
@@ -12,12 +13,14 @@ export const Footer = ({
   return (
     <div className={style.wrapper}>
       <input
+        className={style.input}
         type="text"
         value={keywords}
+        placeholder="Search cocktails"
         onChange={(e) => onKeywordChange(e.target.value)}
       />
-      <button onClick={onSearchClick}>search</button>
-      <button onClick={onRandomClick}>random</button>
+      <button className={classNames(style.button, style.searchButton)} onClick={onSearchClick}>Search</button>
+      <button className={classNames(style.button, style.randomButton)} onClick={onRandomClick}>I'm Feeling Lucky</button>
     </div>
   );
 };

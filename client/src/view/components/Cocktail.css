@@ -1,0 +1,44 @@
+.wrapper {
+  margin: 32px 24px 80px 24px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.details {
+  width: 320px;
+  margin-left: 32px;
+}
+
+.name {
+  font-size: 28px;
+  font-family: 'Lobster', cursive;
+  margin: 24px 0 24px 0;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 18px;
+}
+
+.ingredient {
+  font-family: 'Roboto', sans-serif;
+}
+
+.ingredient + .ingredient {
+  margin-top: 4px;
+}
+
+.instructions {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+}

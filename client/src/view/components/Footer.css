@@ -1,0 +1,37 @@
+.wrapper {
+}
+
+.input {
+  height: 100%;
+  width: 200px;
+  background: transparent;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+
+  border: 0;
+  border-bottom: 1px solid #74b816;;
+}
+
+.button {
+  margin-left: 8px;
+  padding: 8px 12px;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
+  border: 0;
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+.searchButton {
+  color: white;
+  background-color: #74b816;
+}
+
+.randomButton {
+  outline: 1px solid #d0d0d0;
+}
