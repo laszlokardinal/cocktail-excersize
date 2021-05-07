@@ -3,27 +3,36 @@ import PropTypes from "prop-types";
 
 import style from "./Cocktail.css";
 
-export const Cocktail = ({ cocktail }) => {
+const { Fragment } = React; // rollup could not find it exported
+
+export const Cocktail = ({ cocktail, errorMessage }) => {
   if (!cocktail) return "";
 
   return (
     <div className={style.wrapper}>
-      <img className={style.image} src={cocktail.imageUrl} />
-      <div className={style.details}>
-        <h2 className={style.name}>{cocktail.name}</h2>
-        <div className={style.ingredients}>
-          {cocktail.ingredients.map((ingredient) => (
-            <div className={style.ingredient} key={ingredient.name}>
-              {ingredient.name}
-              {" "}
-              {ingredient.measure ? `(${ingredient.measure})` : ""}
+      {!errorMessage ? (
+        <Fragment>
+          <img className={style.image} src={cocktail.imageUrl} />
+          <div className={style.details}>
+            <h2 className={style.name}>{cocktail.name}</h2>
+            <div className={style.ingredients}>
+              {cocktail.ingredients.map((ingredient) => (
+                <div className={style.ingredient} key={ingredient.name}>
+                  {ingredient.name}{" "}
+                  {ingredient.measure ? `(${ingredient.measure})` : ""}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className={style.instructions}>{cocktail.instructions}</div>
-      </div>
+            <div className={style.instructions}>{cocktail.instructions}</div>
+          </div>
+        </Fragment>
+      ) : (
+        <div className={style.error}>{errorMessage}</div>
+      )}
     </div>
   );
 };
 
-Cocktail.propTypes = {};
+Cocktail.propTypes = {
+  errorMessage: PropTypes.string,
+};

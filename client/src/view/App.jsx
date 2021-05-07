@@ -11,19 +11,36 @@ const { useState, useCallback, useEffect } = React;
 export const App = () => {
   const [cocktail, setCocktail] = useState(null);
   const [keywords, setKeywords] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const loadRandomCocktail = useCallback(async () => {
-    const { data } = await axios.get(`${process.env.FE_API_BASE_URL}/cocktail`);
+    try {
+      const { data } = await axios.get(
+        `${process.env.FE_API_BASE_URL}/cocktail`
+      );
 
-    setCocktail(data.data[0]);
+      setCocktail(data.data[0]);
+      setErrorMessage(null);
+    } catch (e) {
+      setErrorMessage("Something went wrong! Try refreshing the page.");
+    }
   });
 
   const searchCocktail = useCallback(async () => {
-    const { data } = await axios.get(
-      `${process.env.FE_API_BASE_URL}/cocktail?keywords=${keywords}`
-    );
+    try {
+      const { data } = await axios.get(
+        `${process.env.FE_API_BASE_URL}/cocktail?keywords=${keywords}`
+      );
 
-    setCocktail(data.data[0]);
+      if (data.data.length > 0) {
+        setCocktail(data.data[0]);
+        setErrorMessage(null);
+      } else {
+        setErrorMessage("We couldn't find any matching cocktail.");
+      }
+    } catch (e) {
+      setErrorMessage("Something went wrong! Try refreshing the page.");
+    }
   }, [keywords]);
 
   // load random cocktail only after the initial render
@@ -31,7 +48,7 @@ export const App = () => {
 
   return (
     <div className={style.wrapper}>
-      <Cocktail cocktail={cocktail} />
+      <Cocktail cocktail={cocktail} errorMessage={errorMessage} />
       <Footer
         keywords={keywords}
         onKeywordChange={setKeywords}

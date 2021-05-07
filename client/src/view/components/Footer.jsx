@@ -19,8 +19,18 @@ export const Footer = ({
         placeholder="Search cocktails"
         onChange={(e) => onKeywordChange(e.target.value)}
       />
-      <button className={classNames(style.button, style.searchButton)} onClick={onSearchClick}>Search</button>
-      <button className={classNames(style.button, style.randomButton)} onClick={onRandomClick}>I'm Feeling Lucky</button>
+      <button
+        className={classNames(style.button, style.searchButton)}
+        onClick={onSearchClick}
+      >
+        Search
+      </button>
+      <button
+        className={classNames(style.button, style.randomButton)}
+        onClick={onRandomClick}
+      >
+        I'm Feeling Lucky
+      </button>
     </div>
   );
 };
