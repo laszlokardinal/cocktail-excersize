@@ -46,14 +46,15 @@ export class theCockTailDbService {
     const ingredients = new Array(15)
       .fill(null)
       .map((_, index) => index + 1)
-      .map((ingredientIndex) =>
-        cocktail[`strIngredient${ingredientIndex}`]
-          ? {
-              name: cocktail[`strIngredient${ingredientIndex}`],
-              measure: (cocktail[`strMeasure${ingredientIndex}`] || "").trim(),
-            }
-          : null
-      )
+      .map((ingredientIndex) => {
+        if (!cocktail[`strIngredient${ingredientIndex}`]) return null;
+
+        const name = cocktail[`strIngredient${ingredientIndex}`];
+        const measure = (cocktail[`strMeasure${ingredientIndex}`] || "").trim();
+        const imageUrl = `${process.env.BE_THECOCKTAILDB_IMAGES_BASE}/ingredients/${name}-Small.png`;
+
+        return { name, measure, imageUrl };
+      })
       .filter((truthy) => truthy);
 
     return {

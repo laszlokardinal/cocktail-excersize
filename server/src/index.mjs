@@ -16,6 +16,7 @@ app.use(cors());
 const missingEnvironmentVariables = [
   "PORT",
   "BE_THECOCKTAILDB_API_BASE",
+  "BE_THECOCKTAILDB_IMAGES_BASE",
 ].filter((environmentVariable) => !(environmentVariable in process.env));
 
 if (missingEnvironmentVariables.length) {
