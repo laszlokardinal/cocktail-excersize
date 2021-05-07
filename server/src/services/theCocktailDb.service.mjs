@@ -17,6 +17,8 @@ export class theCockTailDbService {
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {
       logger.error("failed to fetch random cocktail", e);
+
+      throw new Error("failed to communicate with thecocktaildb");
     }
   }
 
@@ -35,6 +37,8 @@ export class theCockTailDbService {
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {
       logger.error("failed to search cocktails", e);
+
+      throw new Error("failed to communicate with thecocktaildb");
     }
   }
 
