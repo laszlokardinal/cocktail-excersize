@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import expressWinston from "express-winston";
@@ -9,6 +10,8 @@ import { cocktailApi } from "./api/cocktail.api.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+
+app.use(cors());
 
 const missingEnvironmentVariables = [
   "PORT",
