@@ -6,7 +6,9 @@ import style from "./Footer.css";
 
 export const Footer = ({
   keywords,
+  excludeAlcoholic,
   onKeywordChange,
+  onExcludeAlcoholicChange,
   onSearchClick,
   onRandomClick,
 }) => {
@@ -19,25 +21,38 @@ export const Footer = ({
         placeholder="Search cocktails"
         onChange={(e) => onKeywordChange(e.target.value)}
       />
-      <button
-        className={classNames(style.button, style.searchButton)}
-        onClick={onSearchClick}
-      >
-        Search
-      </button>
-      <button
-        className={classNames(style.button, style.randomButton)}
-        onClick={onRandomClick}
-      >
-        I'm Feeling Lucky
-      </button>
+      <div className={style.checkboxWrapper}>
+        <button
+          className={classNames(style.checkbox)}
+          onClick={() => onExcludeAlcoholicChange(!excludeAlcoholic)}
+        >
+          {excludeAlcoholic ? "✖" : ""}
+        </button>
+        Exclude alcoholic drinks from search
+      </div>
+      <div className={style.buttons}>
+        <button
+          className={classNames(style.button, style.searchButton)}
+          onClick={onSearchClick}
+        >
+          Search
+        </button>
+        <button
+          className={classNames(style.button, style.randomButton)}
+          onClick={onRandomClick}
+        >
+          I'm Feeling Lucky
+        </button>
+      </div>
     </div>
   );
 };
 
 Footer.propTypes = {
   keywords: PropTypes.string.isRequired,
+  excludeAlcoholic: PropTypes.bool.isRequired,
   onKeywordChange: PropTypes.func.isRequired,
+  onExcludeAlcoholicChange: PropTypes.func.isRequired,
   onSearchClick: PropTypes.func.isRequired,
   onRandomClick: PropTypes.func.isRequired,
 };

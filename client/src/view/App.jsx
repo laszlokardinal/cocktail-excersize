@@ -11,6 +11,7 @@ const { useState, useCallback, useEffect } = React;
 export const App = () => {
   const [cocktail, setCocktail] = useState(null);
   const [keywords, setKeywords] = useState("");
+  const [excludeAlcoholic, setExcludeAlcoholic] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const loadRandomCocktail = useCallback(async () => {
@@ -29,7 +30,7 @@ export const App = () => {
   const searchCocktail = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.FE_API_BASE_URL}/cocktail?keywords=${keywords}`
+        `${process.env.FE_API_BASE_URL}/cocktail?keywords=${keywords}&excludeAlcoholic=${excludeAlcoholic}`
       );
 
       if (data.data.length > 0) {
@@ -41,7 +42,7 @@ export const App = () => {
     } catch (e) {
       setErrorMessage("Something went wrong! Try refreshing the page.");
     }
-  }, [keywords]);
+  }, [keywords, excludeAlcoholic]);
 
   // load random cocktail only after the initial render
   useEffect(loadRandomCocktail, [true]);
@@ -51,7 +52,9 @@ export const App = () => {
       <Cocktail cocktail={cocktail} errorMessage={errorMessage} />
       <Footer
         keywords={keywords}
+        excludeAlcoholic={excludeAlcoholic}
         onKeywordChange={setKeywords}
+        onExcludeAlcoholicChange={setExcludeAlcoholic}
         onSearchClick={searchCocktail}
         onRandomClick={loadRandomCocktail}
       />
