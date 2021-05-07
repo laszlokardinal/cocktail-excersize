@@ -20,7 +20,7 @@ export const cocktailApi = () => {
         const randomCocktail = await theCockTailDbService.getRandomCocktail();
 
         res.status(200).send({
-          data: [randomCocktail],
+          data: randomCocktail,
           length: 1,
         });
       }
