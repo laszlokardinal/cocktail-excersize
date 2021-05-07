@@ -18,8 +18,14 @@ export const Cocktail = ({ cocktail, errorMessage }) => {
             <div className={style.ingredients}>
               {cocktail.ingredients.map((ingredient) => (
                 <div className={style.ingredient} key={ingredient.name}>
-                  {ingredient.name}{" "}
-                  {ingredient.measure ? `(${ingredient.measure})` : ""}
+                  <img
+                    className={style.ingredientImage}
+                    src={ingredient.imageUrl}
+                  />
+                  <div className={style.ingredientDetails}>
+                    {ingredient.name}{" "}
+                    {ingredient.measure ? `(${ingredient.measure})` : ""}
+                  </div>
                 </div>
               ))}
             </div>
@@ -42,6 +48,7 @@ Cocktail.propTypes = {
       PropTypes.exact({
         name: PropTypes.string.isRequired,
         measure: PropTypes.string.isRequired,
+        imageUrl: PropTypes.string.isRequired,
       })
     ).isRequired,
   }),

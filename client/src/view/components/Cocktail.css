@@ -31,11 +31,23 @@
 }
 
 .ingredient {
-  font-family: "Roboto", sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 .ingredient + .ingredient {
-  margin-top: 4px;
+  margin-top: 8px;
+}
+
+.ingredientImage {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.ingredientDetails {
+  margin-left: 4px;
+  font-family: "Roboto", sans-serif;
 }
 
 .instructions {
