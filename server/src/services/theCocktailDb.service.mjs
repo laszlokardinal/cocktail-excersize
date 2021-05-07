@@ -32,7 +32,7 @@ export class theCockTailDbService {
 
       logger.info("finished searching cocktails");
 
-      const cocktails = data.drinks;
+      const cocktails = data.drinks || [];
 
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {
