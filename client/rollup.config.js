@@ -51,8 +51,7 @@ export default {
     nodeResolve({ browser: true }),
     replace({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      "process.env.API_BASE_URL": JSON.stringify(process.env.API_BASE_URL),
-      "process.env.API_TOKEN": JSON.stringify(process.env.API_TOKEN)
+      "process.env.FE_API_BASE_URL": JSON.stringify(process.env.FE_API_BASE_URL)
     }),
     commonjs({
       include: "node_modules/**"
