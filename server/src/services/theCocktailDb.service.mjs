@@ -22,7 +22,7 @@ export class theCockTailDbService {
     }
   }
 
-  static async searchCocktail(keywords) {
+  static async searchCocktail(keywords, { excludeAlcoholic = false } = {}) {
     try {
       logger.info("start searching cocktails");
 
@@ -32,7 +32,17 @@ export class theCockTailDbService {
 
       logger.info("finished searching cocktails");
 
-      const cocktails = data.drinks || [];
+      let cocktails = data.drinks || [];
+
+      console.log(excludeAlcoholic);
+
+      if (excludeAlcoholic) {
+        // workaround, as alcoholic filter only works on /filter.php endpoint
+        // therefore it can't be combined with search
+        cocktails = cocktails.filter(
+          ({ strAlcoholic }) => strAlcoholic !== "Alcoholic"
+        );
+      }
 
       return cocktails.map(theCockTailDbService.mapCocktailProperties);
     } catch (e) {

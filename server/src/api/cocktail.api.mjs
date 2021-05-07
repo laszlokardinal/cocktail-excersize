@@ -9,7 +9,8 @@ export const cocktailApi = () => {
     try {
       if ("keywords" in req.query) {
         const cocktails = await theCockTailDbService.searchCocktail(
-          req.query.keywords
+          req.query.keywords,
+          { excludeAlcoholic: req.query.excludeAlcoholic === "true" }
         );
 
         res.status(200).send({
